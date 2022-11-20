@@ -29,7 +29,7 @@ void ThreadWorker(LPVOID par) {
     while (true)
     {
         Sleep(100);
-        OutputDebugString();
+
     }
 
     OutputDebugStringA("\nExit from worker\n");
