@@ -1,9 +1,14 @@
-#include "pch.h"
+#define WIN32_LEAN_AND_MEAN
+
 #include "DefaultTypes.h"
+#include <Windows.h>
+//#include "GUI.h"
+#include "Hooks.h"
 #include <string>
-#include <memory>
+#include <memory>vi
 
 HANDLE hThread;
+HMODULE moduleInstance;
 DWORD threadId;
 
 template<typename ... Args>
@@ -26,11 +31,29 @@ undefined4 FUN_0047ac10(void* _this, uint param_1, Point* param_2) {
 void ThreadWorker(LPVOID par) {
     OutputDebugStringA("\nEnter to worker\n");
 
-    while (true)
+    try
     {
-        Sleep(100);
-
+        GUI::Setup();
+        Hooks::Setup();
     }
+    catch (const std::exception& err)
+    {
+        MessageBoxA(0, 
+            err.what(), 
+            "MultiplayerDLL", 
+            MB_OK | MB_ICONEXCLAMATION);
+
+        goto UNLOAD;
+    }
+
+    while (!GetAsyncKeyState(VK_END))
+        Sleep(200);
+
+UNLOAD:
+    Hooks::Destroy();
+    GUI::Destroy();
+
+    FreeLibraryAndExitThread(*(HMODULE*)par, 0);
 
     OutputDebugStringA("\nExit from worker\n");
 }
@@ -48,10 +71,15 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
     case DLL_PROCESS_ATTACH:
         MessageBox(NULL, L"Attached multiplayer.dll", L"Multiplayer", 0);
+
+        moduleInstance = hModule;
         
         DisableThreadLibraryCalls(hModule);
 
-        hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadWorker, NULL, NULL, &threadId);
+        hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadWorker, hModule, NULL, &threadId);
+
+        if (hThread)
+            CloseHandle(hThread);
 
         OutputDebugString(L"Test");
     case DLL_THREAD_ATTACH:
