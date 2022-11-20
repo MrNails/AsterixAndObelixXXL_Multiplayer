@@ -1,0 +1,6 @@
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/ocornut/imgui
+[submodule "minhook"]
+	path = minhook
+	url = https://github.com/TsudaKageyu/minhook
