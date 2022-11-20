@@ -5,7 +5,7 @@
 //#include "GUI.h"
 #include "Hooks.h"
 #include <string>
-#include <memory>vi
+#include <memory>d
 
 HANDLE hThread;
 HMODULE moduleInstance;

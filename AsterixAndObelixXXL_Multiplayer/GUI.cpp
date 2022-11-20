@@ -1,9 +1,9 @@
 
 #include "GUI.h"
 
-#include "../imgui/imgui.h"
-#include "../imgui/imgui_impl_win32.h"
-#include "../imgui/imgui_impl_dx9.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_win32.h"
+#include "imgui/imgui_impl_dx9.h"
 
 #include <stdexcept>
 
@@ -71,7 +71,7 @@ void GUI::DestroyWindow() noexcept
 
 bool GUI::SetupDirectX() noexcept
 {
-	const auto handle = GetModuleHandle(L"d3d9.dll");
+	const auto handle = GetModuleHandleA("d3d9.dll");
 
 	if (!handle)
 		return false;
@@ -157,11 +157,28 @@ void GUI::SetupMenu(LPDIRECT3DDEVICE9 device) noexcept
 		SetWindowLongPtr(window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(WindowProcess))
 		);
 
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplWin32_Init(window);
+	ImGui_ImplDX9_Init(device);
+
 	GUI::isSetup = true;
 }
 
 void GUI::Destroy() noexcept
 {
+	ImGui_ImplDX9_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
+	SetWindowLongPtr(
+		window,
+		GWLP_WNDPROC,
+		reinterpret_cast<LONG_PTR>(originalWndProcess)
+	);
+
+	DestroyDirectX();
 }
 
 void GUI::Render() noexcept

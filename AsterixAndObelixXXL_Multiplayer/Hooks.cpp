@@ -2,13 +2,12 @@
 #include "Hooks.h"
 
 #include <stdexcept>
-#include <intrin.h>
 
-#include "../minhook/minhook.h"
+#include "minhook/minhook.h"
 
-#include "../imgui/imgui.h"
-#include "../imgui/imgui_impl_win32.h"
-#include "../imgui/imgui_impl_dx9.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_win32.h"
+#include "imgui/imgui_impl_dx9.h"
 
 void Hooks::Setup()
 {
@@ -42,12 +41,7 @@ void Hooks::Destroy() noexcept
 
 long __stdcall Hooks::EndScene(IDirect3DDevice9* device) noexcept
 {
-	static const auto returnAddress = _ReturnAddress();
-
 	const auto result = EndSceneOriginal(device, device);
-
-	if (_ReturnAddress() == returnAddress)
-		return result;
 
 	if (!GUI::isSetup)
 		GUI::SetupMenu(device);
