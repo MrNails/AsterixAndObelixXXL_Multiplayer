@@ -25,6 +25,12 @@
     <Filter Include="Source Files\MinHook">
       <UniqueIdentifier>{6a3c537f-4b8e-4814-be8b-5ee95a623805}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI\GUI_Classes">
+      <UniqueIdentifier>{e146a4a6-6594-4d9e-be4a-0f0c7a1ee8a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\GUI_Classes">
+      <UniqueIdentifier>{9e4e0a41-51d0-48a4-8d92-d3eb51806a93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -38,6 +44,39 @@
     </ClInclude>
     <ClInclude Include="Hooks.h">
       <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IControl.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBlock.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatSlider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckBox.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="IContainer.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="IWindowable.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +124,27 @@
     </ClCompile>
     <ClCompile Include="minhook\hde\hde64.c">
       <Filter>Source Files\MinHook</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBlock.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatSlider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

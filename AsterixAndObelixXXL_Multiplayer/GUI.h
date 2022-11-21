@@ -1,5 +1,7 @@
 #pragma once
 #include <d3d9.h>
+#include <list>
+#include "IControl.h"
 
 namespace GUI {
 	inline const wchar_t* WND_CLASS_NAME = L"MultiplayerDLLClass";
@@ -14,6 +16,8 @@ namespace GUI {
 
 	inline LPDIRECT3DDEVICE9 device = nullptr;
 	inline LPDIRECT3D9 d3d9 = nullptr;
+
+	inline std::list<IControl> controls;
 
 	bool SetupWindowClass(const wchar_t* wndClassName) noexcept;
 	void DestroyWindowClass() noexcept;

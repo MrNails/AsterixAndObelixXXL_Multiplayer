@@ -188,8 +188,27 @@ void GUI::Render() noexcept
 
 	ImGui::NewFrame();
 
-	ImGui::Begin("Test menu", &isOpen);
-	ImGui::End();
+	for (auto itr = controls.begin(); itr != controls.end(); itr++)
+		itr->Draw();
+
+	//ImGui::Begin("Test menu", &isOpen, wndFlgs);
+
+	//if (ImGui::BeginMenuBar()) {
+	//	if (ImGui::BeginMenu("Windows")) {
+	//		ImGui::MenuItem("Help", NULL, &helpPressed);
+	//		ImGui::EndMenu();
+	//	}
+
+	//	if (helpPressed) {
+	//		ImGui::Begin("Help");
+	//		ImGui::Text("For minimize/maximize window press Insert \nFor fully close menu press End");
+	//		ImGui::End();
+	//	}
+	//	ImGui::EndMenuBar();
+	//}
+
+	//	ImGui::Text("Test text");
+	//ImGui::End();
 
 	ImGui::EndFrame();
 	ImGui::Render();

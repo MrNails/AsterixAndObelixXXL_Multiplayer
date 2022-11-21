@@ -1,26 +1,13 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include "DefaultTypes.h"
-#include <Windows.h>
-//#include "GUI.h"
 #include "Hooks.h"
-#include <string>
-#include <memory>d
+#include "Helpers.h"
 
 HANDLE hThread;
 HMODULE moduleInstance;
 DWORD threadId;
 
-template<typename ... Args>
-std::string StringFormat(const std::string& format, Args ... args)
-{
-    int size_s = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
-    if (size_s <= 0) return format;
-    auto size = static_cast<size_t>(size_s);
-    std::unique_ptr<char[]> buf(new char[size]);
-    std::snprintf(buf.get(), size, format.c_str(), args ...);
-    return std::string(buf.get(), buf.get() + size - 1); // We don't want the '\0' inside
-}
 
 undefined4 FUN_0047ac10(void* _this, uint param_1, Point* param_2) {
     undefined4 (* func)(void*, uint, Point *) = (undefined4(*)(void*, uint, Point*))0x0047ac10;

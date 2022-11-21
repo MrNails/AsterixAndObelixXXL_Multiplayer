@@ -165,13 +165,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CheckBox.h" />
     <ClInclude Include="DefaultTypes.h" />
+    <ClInclude Include="FloatSlider.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="Hooks.h" />
+    <ClInclude Include="IContainer.h" />
+    <ClInclude Include="IControl.h" />
+    <ClInclude Include="IWindowable.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="TextBlock.h" />
+    <ClInclude Include="TextBox.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FloatSlider.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="Hooks.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -181,11 +195,15 @@
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="minhook\buffer.c" />
     <ClCompile Include="minhook\hde\hde32.c" />
     <ClCompile Include="minhook\hde\hde64.c" />
     <ClCompile Include="minhook\hook.c" />
     <ClCompile Include="minhook\trampoline.c" />
+    <ClCompile Include="TextBlock.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
