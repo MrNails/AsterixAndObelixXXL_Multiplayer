@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,9 +60,6 @@
     <ClInclude Include="TextBox.h">
       <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
-    <ClInclude Include="FloatSlider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CheckBox.h">
       <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
@@ -76,6 +70,9 @@
       <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
     <ClInclude Include="IWindowable.h">
+      <Filter>Header Files\GUI\GUI_Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="FloatSlider.h">
       <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -137,13 +134,13 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\GUI\GUI_Classes</Filter>
     </ClCompile>
-    <ClCompile Include="FloatSlider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CheckBox.cpp">
       <Filter>Source Files\GUI\GUI_Classes</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>Source Files\GUI\GUI_Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="FloatSlider.cpp">
       <Filter>Source Files\GUI\GUI_Classes</Filter>
     </ClCompile>
   </ItemGroup>

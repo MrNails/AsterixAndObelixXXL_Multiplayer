@@ -13,12 +13,15 @@ namespace GUI {
 		}
 		~IContainer() {
 			if (_children != nullptr)
+			{
+				_children->clear();
 				delete _children;
+			}
 
 			_children = nullptr;
 		}
 
-		std::list<IControl*>* GetList() noexcept {
+		std::list<IControl*>* GetControls() noexcept {
 			return _children;
 		}
 	};

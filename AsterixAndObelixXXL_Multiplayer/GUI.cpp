@@ -1,4 +1,4 @@
-
+#pragma once
 #include "GUI.h"
 
 #include "imgui/imgui.h"
@@ -189,7 +189,7 @@ void GUI::Render() noexcept
 	ImGui::NewFrame();
 
 	for (auto itr = controls.begin(); itr != controls.end(); itr++)
-		itr->Draw();
+		(*itr)->Draw();
 
 	//ImGui::Begin("Test menu", &isOpen, wndFlgs);
 

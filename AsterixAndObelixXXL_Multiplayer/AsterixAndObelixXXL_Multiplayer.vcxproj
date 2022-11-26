@@ -169,7 +169,6 @@
     <ClInclude Include="CheckBox.h" />
     <ClInclude Include="DefaultTypes.h" />
     <ClInclude Include="FloatSlider.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Hooks.h" />

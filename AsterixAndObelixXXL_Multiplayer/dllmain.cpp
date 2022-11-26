@@ -8,11 +8,29 @@ HANDLE hThread;
 HMODULE moduleInstance;
 DWORD threadId;
 
-
 undefined4 FUN_0047ac10(void* _this, uint param_1, Point* param_2) {
-    undefined4 (* func)(void*, uint, Point *) = (undefined4(*)(void*, uint, Point*))0x0047ac10;
- 
+    auto func = (undefined4(__thiscall*)(void*, uint, Point*))0x0047ac10;
+
     return func(_this, param_1, param_2);
+}
+
+void Button_Clicked(const GUI::Button* btn) {
+
+}
+
+void SetupGUI() {
+    auto mainWnd = new GUI::Window("Multiplayer GUI by MrNails");
+    auto mainWndControls = mainWnd->GetControls();
+    auto btn = new GUI::Button();
+
+    btn->SetOnClichHandler(Button_Clicked);
+
+    mainWndControls->push_back(new GUI::TextBlock("Test"));
+    mainWndControls->push_back(new GUI::TextBlock("Test2"));
+
+    mainWndControls->push_back(btn);
+
+    GUI::controls.push_back(mainWnd);
 }
 
 void ThreadWorker(LPVOID par) {
@@ -22,6 +40,8 @@ void ThreadWorker(LPVOID par) {
     {
         GUI::Setup();
         Hooks::Setup();
+
+        SetupGUI();
     }
     catch (const std::exception& err)
     {
@@ -45,13 +65,12 @@ UNLOAD:
     OutputDebugStringA("\nExit from worker\n");
 }
 
-
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
                      )
 {
-    auto str = StringFormat("Incoming message: %d\n", ul_reason_for_call);
+    auto str = StringFormat(std::string("Incoming message: %d\n"), ul_reason_for_call);
     OutputDebugStringA(str.c_str());
 
     switch (ul_reason_for_call)
@@ -67,12 +86,10 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
         if (hThread)
             CloseHandle(hThread);
-
-        OutputDebugString(L"Test");
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
-        OutputDebugString(L"Exit from multiplayer.dll");
+        OutputDebugString(L"Exit from multiplayer.dll\n");
         break;
     }
     return TRUE;
