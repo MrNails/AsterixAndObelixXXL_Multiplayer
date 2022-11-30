@@ -10,7 +10,7 @@ namespace GUI {
 		TextBlock();
 		TextBlock(const char* text);
 		TextBlock(const char* text, const char* name);
-		//TextBlock(const TextBlock&& textBlock);
+		TextBlock(const TextBlock& textBlock);
 		~TextBlock();
 
 		void SetText(const char* text, bool deleteOldText = false) noexcept;

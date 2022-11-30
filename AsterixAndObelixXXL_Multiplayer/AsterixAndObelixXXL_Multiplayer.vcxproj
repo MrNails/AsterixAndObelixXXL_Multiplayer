@@ -176,6 +176,7 @@
     <ClInclude Include="IControl.h" />
     <ClInclude Include="IWindowable.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="GameTypes.h" />
     <ClInclude Include="TextBlock.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="Window.h" />

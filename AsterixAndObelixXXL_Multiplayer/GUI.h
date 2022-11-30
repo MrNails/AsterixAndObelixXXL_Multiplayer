@@ -7,6 +7,7 @@
 #include "Window.h"
 #include "TextBlock.h"
 #include "Button.h"
+#include "TextBox.h"
 
 
 namespace GUI {

@@ -75,6 +75,9 @@
     <ClInclude Include="FloatSlider.h">
       <Filter>Header Files\GUI\GUI_Classes</Filter>
     </ClInclude>
+    <ClInclude Include="GameTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

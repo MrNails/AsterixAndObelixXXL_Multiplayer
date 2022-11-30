@@ -16,16 +16,16 @@ GUI::TextBlock::TextBlock(const char* text, const char* name)
 	SetText(text);
 }
 
-//GUI::TextBlock::TextBlock(const TextBlock&& textBlock)
-//	: IControl::IControl()
-//{
-//	auto textLen = strlen(textBlock.GetText());
-//	auto tmpText = new char[textLen];
-//
-//	memcpy_s(tmpText, textLen, textBlock.GetText(), textLen);
-//
-//	SetText(tmpText);
-//}
+GUI::TextBlock::TextBlock(const TextBlock& textBlock)
+	: IControl::IControl(textBlock)
+{
+	auto textLen = strlen(textBlock.GetText());
+	auto tmpText = new char[textLen];
+
+	memcpy_s(tmpText, textLen, textBlock.GetText(), textLen);
+
+	SetText(tmpText);
+}
 
 GUI::TextBlock::~TextBlock()
 {

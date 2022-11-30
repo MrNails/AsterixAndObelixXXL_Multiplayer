@@ -1,12 +1,18 @@
 #define WIN32_LEAN_AND_MEAN
 
-#include "DefaultTypes.h"
+//#include "DefaultTypes.h"
+#include "GameTypes.h"
 #include "Hooks.h"
 #include "Helpers.h"
 
 HANDLE hThread;
 HMODULE moduleInstance;
+HMODULE gameModuleInstance;
 DWORD threadId;
+
+GameManager* gameManager = nullptr;
+
+GUI::TextBoxInt* tb;
 
 undefined4 FUN_0047ac10(void* _this, uint param_1, Point* param_2) {
     auto func = (undefined4(__thiscall*)(void*, uint, Point*))0x0047ac10;
@@ -14,20 +20,41 @@ undefined4 FUN_0047ac10(void* _this, uint param_1, Point* param_2) {
     return func(_this, param_1, param_2);
 }
 
-void Button_Clicked(const GUI::Button* btn) {
+void JumpHandler() {
+    auto func = (void (__thiscall*)(void*))0x0049cdf0;
+    int currentCharIdx = gameManager->Player->GroupTrio->currentCharIdx;
+    
+    auto currentPPD = gameManager->Player->GroupTrio->CharactersPPD[currentCharIdx];
 
+    func(currentPPD);
+}
+
+void Button_Clicked(const GUI::Button* btn) {
+    //JumpHandler();
+    Point pnt;
+    pnt.X = pnt.Y = pnt.Z = 0;
+
+    if (gameManager->Player != nullptr && gameManager->Player->GroupTrio != nullptr)
+    //FUN_0047ac10(gameManager->Player->GroupTrio, 0x00004800 + gameManager->Player->GroupTrio->nextCharIdx, &pnt);
+    FUN_0047ac10(gameManager->Player->GroupTrio, tb->GetValue(), &pnt);
 }
 
 void SetupGUI() {
     auto mainWnd = new GUI::Window("Multiplayer GUI by MrNails");
     auto mainWndControls = mainWnd->GetControls();
     auto btn = new GUI::Button();
+    btn->SetContent("Test function");
+
+    tb = new GUI::TextBoxInt("##FUN_0047ac10 second arg value");
+    tb->SetLabelPosition(GUI::TBLP_Top);
+    tb->SetFlags(GUI::TB_CharsHexadecimal);
 
     btn->SetOnClichHandler(Button_Clicked);
 
     mainWndControls->push_back(new GUI::TextBlock("Test"));
     mainWndControls->push_back(new GUI::TextBlock("Test2"));
 
+    mainWndControls->push_back(tb);
     mainWndControls->push_back(btn);
 
     GUI::controls.push_back(mainWnd);
@@ -40,7 +67,7 @@ void ThreadWorker(LPVOID par) {
     {
         GUI::Setup();
         Hooks::Setup();
-
+        
         SetupGUI();
     }
     catch (const std::exception& err)
@@ -53,8 +80,12 @@ void ThreadWorker(LPVOID par) {
         goto UNLOAD;
     }
 
-    while (!GetAsyncKeyState(VK_END))
+    while (!GetAsyncKeyState(VK_END)) {
         Sleep(200);
+        auto tmpGM = (GameManager**)gameModuleInstance + 0x2653BC / PTR_SIZE;
+        if (gameManager == nullptr && tmpGM != nullptr)
+            gameManager = *tmpGM;
+    }
 
 UNLOAD:
     Hooks::Destroy();
@@ -77,6 +108,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
     case DLL_PROCESS_ATTACH:
         MessageBox(NULL, L"Attached multiplayer.dll", L"Multiplayer", 0);
+
+        gameModuleInstance = GetModuleHandleA(0);
 
         moduleInstance = hModule;
         

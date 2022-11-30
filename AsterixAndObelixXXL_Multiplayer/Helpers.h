@@ -4,6 +4,7 @@
 #include <cassert>
 
 inline static const char EMPTY_STRING[2] = { ' ', '\0' };
+inline const int PTR_SIZE = sizeof(int*);
 
 template<typename ... Args>
 std::string StringFormat(const std::string& format, Args ... args)
@@ -32,6 +33,15 @@ inline void DeleteStringAndSetNull(const char** str) {
 
     if (*str != nullptr && *str != EMPTY_STRING) {
         delete[] *str;
+        *str = nullptr;
+    }
+}
+
+inline void DeleteStringAndSetNull(char** str) {
+    assert(str != nullptr);
+
+    if (*str != nullptr && *str != EMPTY_STRING) {
+        delete[] * str;
         *str = nullptr;
     }
 }

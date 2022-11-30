@@ -15,7 +15,7 @@ namespace GUI {
 			_isVisible = true;
 			SetName(name);
 		};
-		IControl(const IControl&& control) noexcept {
+		IControl(const IControl& control) noexcept {
 			auto nameLen = strlen(control.GetName());
 			auto tmpName = new char[nameLen];
 

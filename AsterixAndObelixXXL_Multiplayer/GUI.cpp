@@ -191,6 +191,9 @@ void GUI::Render() noexcept
 	for (auto itr = controls.begin(); itr != controls.end(); itr++)
 		(*itr)->Draw();
 
+
+	//ImGui::InputInt("Test", &v, 1, 100, ImGuiInputTextFlags_CharsHexadecimal);
+
 	//ImGui::Begin("Test menu", &isOpen, wndFlgs);
 
 	//if (ImGui::BeginMenuBar()) {
